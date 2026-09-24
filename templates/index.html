@@ -1,126 +1,1584 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>{% if k %}{{ k.name }}{% else %}Детский сад{% endif %}</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{--ink:#1e3a4c;--muted:#5b7382;--bg:#f2f8fb;--card:#fff;--sky:#5bb4e5;--sun:#ffc845;--leaf:#46b07a;--coral:#ff7b62}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Nunito,system-ui,sans-serif}
-h1,h2,h3{font-family:Fredoka,Nunito,sans-serif;font-weight:600;line-height:1.15;margin:0}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-nav{display:flex;gap:22px;flex-wrap:wrap;padding:18px 0;font-weight:700}
-nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
-.hero{padding:36px 0 56px}
-.hero h1{font-size:clamp(2.4rem,7vw,4.8rem);max-width:15ch}
-.slogan{font-size:1.25rem;color:var(--muted);margin:16px 0 0;max-width:46ch}
-.stats{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
-.stat{padding:22px 26px;min-width:190px;color:var(--ink)}
-.stat b{display:block;font:600 3.2rem/1 Fredoka,sans-serif}
-.stat span{font-weight:700}
-.s1{background:var(--sun);border-radius:28px 28px 28px 6px}
-.s2{background:var(--leaf);color:#fff;border-radius:6px 28px 28px 28px}
-.s3{background:var(--sky);border-radius:28px 6px 28px 28px}
-.s4{background:var(--coral);color:#fff;border-radius:28px 28px 6px 28px}
-section{padding:48px 0}
-section h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:22px}
-.txt{max-width:70ch}
-.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.card{background:var(--card);border-radius:20px;padding:24px;border-left:8px solid var(--sky)}
-.card.f{border-color:var(--sun)}.card.d{border-color:var(--coral)}
-.card small{display:block;color:var(--muted);font-weight:700}
-.card h3{font-size:1.45rem;margin:2px 0 8px}
-.card img{width:96px;height:96px;object-fit:cover;border-radius:50%;float:right;margin:0 0 8px 14px}
-.teachers{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.t{background:var(--card);border-radius:20px;overflow:hidden}
-.t img,.ph{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#dcecf5}
-.ph{display:grid;place-items:center;font:600 3rem Fredoka,sans-serif;color:var(--sky)}
-.t div{padding:16px 18px 20px}
-.t h3{font-size:1.2rem}.t p{margin:4px 0}.role{color:var(--muted);font-weight:700}
-.sch{font-size:.95rem;border-top:2px dashed #cfe0ea;margin-top:10px;padding-top:10px}
-.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-footer{padding:30px 0 50px;color:var(--muted);font-size:.9rem}
-.empty{padding:80px 0;text-align:center}
+
+:root{
+    --bg:#f7f9fc;
+    --white:#ffffff;
+    --text:#17212b;
+    --muted:#718096;
+
+    --blue:#5b8def;
+    --blue-dark:#4778df;
+    --blue-light:#eaf1ff;
+
+    --green:#5fc58b;
+    --green-light:#eaf9f1;
+
+    --yellow:#ffd76a;
+    --yellow-light:#fff8df;
+
+    --pink:#ff8fa3;
+    --pink-light:#fff0f3;
+
+    --border:#e8edf3;
+
+    --shadow:0 15px 45px rgba(37,55,75,.08);
+    --shadow-hover:0 20px 55px rgba(37,55,75,.13);
+
+    --radius:28px;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+    font-size:16px;
+    line-height:1.7;
+}
+
+a{
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+}
+
+h1,h2,h3{
+    margin:0;
+    font-family:"Manrope",sans-serif;
+    line-height:1.15;
+}
+
+.wrap{
+    width:min(1180px, calc(100% - 40px));
+    margin:0 auto;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+    padding:16px 0;
+    background:rgba(247,249,252,.85);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(232,237,243,.7);
+}
+
+.nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    font-family:"Manrope",sans-serif;
+    font-weight:800;
+    font-size:20px;
+}
+
+.logo-icon{
+    width:44px;
+    height:44px;
+    display:grid;
+    place-items:center;
+    border-radius:15px;
+    background:linear-gradient(135deg,#6da0ff,#8c7cf5);
+    color:white;
+    font-size:21px;
+    box-shadow:0 8px 20px rgba(91,141,239,.25);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--muted);
+    font-weight:600;
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:var(--text);
+}
+
+.nav-contact{
+    padding:11px 18px;
+    border-radius:14px;
+    background:var(--text);
+    color:white !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:75px 0 60px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:55px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:50px;
+    background:var(--blue-light);
+    color:var(--blue-dark);
+    font-weight:700;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+.badge-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,76px);
+    letter-spacing:-2.5px;
+    max-width:800px;
+}
+
+.slogan{
+    margin:25px 0 30px;
+    max-width:600px;
+    color:var(--muted);
+    font-size:19px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 21px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.25s;
+}
+
+.btn-primary{
+    background:var(--text);
+    color:white;
+    box-shadow:0 10px 25px rgba(23,33,43,.15);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 30px rgba(23,33,43,.2);
+}
+
+.btn-secondary{
+    background:white;
+    border:1px solid var(--border);
+}
+
+.btn-secondary:hover{
+    background:#f1f4f8;
+}
+
+
+/* =========================
+   HERO CARD
+========================= */
+
+.hero-card{
+    position:relative;
+    min-height:420px;
+    border-radius:40px;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%,#dce8ff,transparent 30%),
+        radial-gradient(circle at 80% 80%,#ffe3eb,transparent 35%),
+        #edf3ff;
+
+    box-shadow:var(--shadow);
+}
+
+.hero-shape{
+    position:absolute;
+    border-radius:50%;
+    opacity:.7;
+}
+
+.shape-1{
+    width:160px;
+    height:160px;
+    background:var(--yellow);
+    top:-50px;
+    right:-30px;
+}
+
+.shape-2{
+    width:120px;
+    height:120px;
+    background:var(--green);
+    bottom:-30px;
+    left:-25px;
+}
+
+.hero-emoji{
+    position:absolute;
+    inset:0;
+    display:grid;
+    place-items:center;
+    font-size:150px;
+    filter:drop-shadow(0 20px 20px rgba(0,0,0,.08));
+}
+
+.hero-label{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    right:25px;
+    padding:16px 20px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,.8);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    font-weight:700;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-top:35px;
+}
+
+.stat{
+    padding:24px;
+    border-radius:22px;
+    background:white;
+    border:1px solid var(--border);
+    transition:.25s;
+}
+
+.stat:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+}
+
+.stat-icon{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:13px;
+    margin-bottom:16px;
+    font-size:20px;
+}
+
+.stat:nth-child(1) .stat-icon{
+    background:var(--yellow-light);
+}
+
+.stat:nth-child(2) .stat-icon{
+    background:var(--green-light);
+}
+
+.stat:nth-child(3) .stat-icon{
+    background:var(--blue-light);
+}
+
+.stat:nth-child(4) .stat-icon{
+    background:var(--pink-light);
+}
+
+.stat b{
+    display:block;
+    font-family:"Manrope";
+    font-size:32px;
+    line-height:1;
+    margin-bottom:7px;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:14px;
+    font-weight:600;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    padding:85px 0;
+}
+
+.section-head{
+    margin-bottom:35px;
+}
+
+.section-label{
+    display:inline-block;
+    margin-bottom:10px;
+    color:var(--blue);
+    font-weight:800;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+section h2{
+    font-size:clamp(30px,4vw,46px);
+    letter-spacing:-1.5px;
+}
+
+.section-description{
+    margin-top:12px;
+    color:var(--muted);
+    max-width:650px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-box{
+    display:grid;
+    grid-template-columns:1fr .7fr;
+    gap:25px;
+}
+
+.about-main,
+.about-side{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px;
+    box-shadow:0 8px 30px rgba(37,55,75,.04);
+}
+
+.about-main{
+    font-size:17px;
+}
+
+.about-side{
+    background:linear-gradient(145deg,#eef4ff,#f8fbff);
+}
+
+.info-row{
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.info-row:last-child{
+    border-bottom:0;
+}
+
+.info-row small{
+    display:block;
+    color:var(--muted);
+    font-weight:700;
+    margin-bottom:4px;
+}
+
+
+/* =========================
+   LEADERS
+========================= */
+
+.people{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.card{
+    position:relative;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-hover);
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:var(--blue-light);
+    right:-60px;
+    top:-60px;
+    z-index:0;
+}
+
+.card > *{
+    position:relative;
+    z-index:1;
+}
+
+.card.f::after{
+    background:var(--yellow-light);
+}
+
+.card.d::after{
+    background:var(--pink-light);
+}
+
+.card small{
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
+
+.card h3{
+    font-size:24px;
+    margin:5px 0 12px;
+}
+
+.card img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:24px;
+    float:right;
+    margin-left:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+
+/* =========================
+   TEACHERS
+========================= */
+
+.teachers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.t{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:24px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.t:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-hover);
+}
+
+.t-image{
+    position:relative;
+    overflow:hidden;
+    background:#edf3f8;
+}
+
+.t img,
+.ph{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    display:block;
+}
+
+.t img{
+    transition:.4s;
+}
+
+.t:hover img{
+    transform:scale(1.04);
+}
+
+.ph{
+    display:grid;
+    place-items:center;
+    font-family:"Manrope";
+    font-size:60px;
+    color:var(--blue);
+    background:linear-gradient(135deg,#eaf1ff,#f8faff);
+}
+
+.t-content{
+    padding:22px;
+}
+
+.t h3{
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.role{
+    color:var(--blue);
+    font-weight:700;
+    font-size:14px;
+}
+
+.experience{
+    color:var(--muted);
+    margin:10px 0;
+}
+
+.phone{
+    font-weight:700;
+}
+
+.sch{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--border);
+    color:var(--muted);
+    font-size:14px;
+}
+
+
+/* =========================
+   CONTACTS
+========================= */
+
+.contacts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.contact-card{
+    padding:28px;
+    border-radius:24px;
+    background:white;
+    border:1px solid var(--border);
+}
+
+.contact-icon{
+    width:50px;
+    height:50px;
+    display:grid;
+    place-items:center;
+    border-radius:16px;
+    font-size:23px;
+    margin-bottom:18px;
+}
+
+.contact-card:nth-child(1) .contact-icon{
+    background:var(--blue-light);
+}
+
+.contact-card:nth-child(2) .contact-icon{
+    background:var(--green-light);
+}
+
+.contact-card:nth-child(3) .contact-icon{
+    background:var(--yellow-light);
+}
+
+.contact-card small{
+    display:block;
+    color:var(--muted);
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.contact-card a{
+    text-decoration:none;
+    font-weight:700;
+}
+
+.contact-card a:hover{
+    color:var(--blue);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:30px;
+    padding:35px 0;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.footer-name{
+    color:var(--text);
+    font-weight:800;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    text-align:center;
+}
+
+.empty-box{
+    max-width:550px;
+    padding:50px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:32px;
+    box-shadow:var(--shadow);
+}
+
+.empty-icon{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.empty h1{
+    font-size:40px;
+}
+
+.empty p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.hero-content{
+    animation:fadeUp .7s ease both;
+}
+
+.hero-card{
+    animation:fadeUp .8s .1s ease both;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        gap:15px;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card{
+        min-height:330px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-box{
+        grid-template-columns:1fr;
+    }
+
+    .teachers{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .contacts{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .wrap{
+        width:min(100% - 28px,1180px);
+    }
+
+    .navbar{
+        position:relative;
+    }
+
+    .nav-inner{
+        align-items:flex-start;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding:45px 0 35px;
+    }
+
+    .hero h1{
+        font-size:43px;
+        letter-spacing:-1.5px;
+    }
+
+    .slogan{
+        font-size:17px;
+    }
+
+    .hero-card{
+        min-height:270px;
+        border-radius:30px;
+    }
+
+    .hero-emoji{
+        font-size:100px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat{
+        padding:18px;
+    }
+
+    .stat b{
+        font-size:27px;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+    .people,
+    .teachers{
+        grid-template-columns:1fr;
+    }
+
+    .about-main,
+    .about-side,
+    .card{
+        padding:22px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .empty-box{
+        padding:35px 22px;
+    }
+
+    .empty h1{
+        font-size:32px;
+    }
+
+    .hero-buttons{
+        width:100%;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+}
+
 </style>
 </head>
+
 <body>
+
 {% if not k %}
-<div class="wrap empty"><h1>Сайт пока пуст</h1>
-<p>Зайдите в <a href="/admin/">админ-панель</a> и заполните раздел «Информация о садике».</p></div>
+
+<div class="empty">
+
+    <div class="empty-box">
+
+        <div class="empty-icon">
+            🧸
+        </div>
+
+        <h1>
+            Сайт пока пуст
+        </h1>
+
+        <p>
+            Зайдите в админ-панель и заполните раздел
+            «Информация о садике».
+        </p>
+
+        <a class="btn btn-primary" href="/admin/">
+            Открыть админ-панель
+        </a>
+
+    </div>
+
+</div>
+
 {% else %}
-<div class="wrap">
-<nav>
-  <a href="#about">О садике</a><a href="#leaders">Руководство</a>
-  {% if teachers %}<a href="#teachers">Воспитатели</a>{% endif %}<a href="#contacts">Контакты</a>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="navbar">
+
+    <div class="wrap nav-inner">
+
+        <a href="#" class="logo">
+
+            <div class="logo-icon">
+                🧸
+            </div>
+
+            <span>
+                {{ k.name }}
+            </span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#about">
+                О садике
+            </a>
+
+            {% if k.founder_name or k.director_name %}
+
+            <a href="#leaders">
+                Руководство
+            </a>
+
+            {% endif %}
+
+
+            {% if teachers %}
+
+            <a href="#teachers">
+                Команда
+            </a>
+
+            {% endif %}
+
+
+            <a href="#contacts" class="nav-contact">
+                Контакты
+            </a>
+
+        </div>
+
+    </div>
+
 </nav>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <header class="hero">
-  <h1>{{ k.name }}</h1>
-  {% if k.slogan %}<p class="slogan">{{ k.slogan }}</p>{% endif %}
-  <div class="stats">
-    <div class="stat s1"><b>{{ k.students_count }}</b><span>детей учатся сейчас</span></div>
-    <div class="stat s2"><b>{{ k.graduates_count }}</b><span>выпускников</span></div>
-    {% if k.groups_count %}<div class="stat s3"><b>{{ k.groups_count }}</b><span>групп</span></div>{% endif %}
-    {% if teachers %}<div class="stat s4"><b>{{ teachers|length }}</b><span>сотрудников в команде</span></div>{% endif %}
-  </div>
+
+    <div class="wrap">
+
+        <div class="hero-grid">
+
+            <div class="hero-content">
+
+                <div class="badge">
+
+                    <span class="badge-dot"></span>
+
+                    Добро пожаловать
+
+                </div>
+
+
+                <h1>
+                    {{ k.name }}
+                </h1>
+
+
+                {% if k.slogan %}
+
+                <p class="slogan">
+                    {{ k.slogan }}
+                </p>
+
+                {% endif %}
+
+
+                <div class="hero-buttons">
+
+                    <a href="#about" class="btn btn-primary">
+                        Узнать больше →
+                    </a>
+
+                    <a href="#contacts" class="btn btn-secondary">
+                        Контакты
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-shape shape-1"></div>
+
+                <div class="hero-shape shape-2"></div>
+
+                <div class="hero-emoji">
+                    🧸
+                </div>
+
+                <div class="hero-label">
+
+                    🌈 Место, где детям интересно
+                    расти, учиться и мечтать
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             STATS
+        ========================= -->
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    👧
+                </div>
+
+                <b>
+                    {{ k.students_count }}
+                </b>
+
+                <span>
+                    детей сейчас
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🎓
+                </div>
+
+                <b>
+                    {{ k.graduates_count }}
+                </b>
+
+                <span>
+                    выпускников
+                </span>
+
+            </div>
+
+
+            {% if k.groups_count %}
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🏠
+                </div>
+
+                <b>
+                    {{ k.groups_count }}
+                </b>
+
+                <span>
+                    групп
+                </span>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if teachers %}
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    👩‍🏫
+                </div>
+
+                <b>
+                    {{ teachers|length }}
+                </b>
+
+                <span>
+                    сотрудников
+                </span>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
 </header>
 
+
+<!-- =========================
+     ABOUT
+========================= -->
+
 <section id="about">
-  <h2>О садике{% if k.founded_year %}: с {{ k.founded_year }} года{% endif %}</h2>
-  <div class="txt">{{ k.about|linebreaks }}{% if k.extra_info %}{{ k.extra_info|linebreaks }}{% endif %}
-  {% if k.license_info %}<p><b>Лицензия:</b> {{ k.license_info }}</p>{% endif %}</div>
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <span class="section-label">
+                О нас
+            </span>
+
+            <h2>
+
+                Место для счастливого детства
+
+                {% if k.founded_year %}
+
+                с {{ k.founded_year }} года
+
+                {% endif %}
+
+            </h2>
+
+
+            <p class="section-description">
+
+                Мы создаём пространство, в котором дети могут
+                развиваться, общаться, играть и открывать новое
+                каждый день.
+
+            </p>
+
+        </div>
+
+
+        <div class="about-box">
+
+            <div class="about-main">
+
+                {{ k.about|linebreaks }}
+
+
+                {% if k.extra_info %}
+
+                {{ k.extra_info|linebreaks }}
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="about-side">
+
+                {% if k.founded_year %}
+
+                <div class="info-row">
+
+                    <small>
+                        Мы работаем с
+                    </small>
+
+                    <strong>
+                        {{ k.founded_year }} года
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if k.license_info %}
+
+                <div class="info-row">
+
+                    <small>
+                        Лицензия
+                    </small>
+
+                    <strong>
+                        {{ k.license_info }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if k.groups_count %}
+
+                <div class="info-row">
+
+                    <small>
+                        Группы
+                    </small>
+
+                    <strong>
+                        {{ k.groups_count }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
+
+
+<!-- =========================
+     LEADERS
+========================= -->
 
 {% if k.founder_name or k.director_name %}
+
 <section id="leaders">
-  <h2>Руководство</h2>
-  <div class="people">
-    {% if k.founder_name %}<div class="card f"><small>Учредитель</small><h3>{{ k.founder_name }}</h3>{{ k.founder_info|linebreaks }}</div>{% endif %}
-    {% if k.director_name %}<div class="card d">
-      {% if k.director_photo %}<img src="{{ k.director_photo.url }}" alt="{{ k.director_name }}">{% endif %}
-      <small>Директор</small><h3>{{ k.director_name }}</h3>{{ k.director_info|linebreaks }}</div>{% endif %}
-  </div>
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <span class="section-label">
+                Наша команда
+            </span>
+
+            <h2>
+                Руководство
+            </h2>
+
+        </div>
+
+
+        <div class="people">
+
+            {% if k.founder_name %}
+
+            <div class="card f">
+
+                <small>
+                    Учредитель
+                </small>
+
+                <h3>
+                    {{ k.founder_name }}
+                </h3>
+
+                {{ k.founder_info|linebreaks }}
+
+            </div>
+
+            {% endif %}
+
+
+            {% if k.director_name %}
+
+            <div class="card d">
+
+                {% if k.director_photo %}
+
+                <img
+                    src="{{ k.director_photo.url }}"
+                    alt="{{ k.director_name }}"
+                >
+
+                {% endif %}
+
+
+                <small>
+                    Директор
+                </small>
+
+                <h3>
+                    {{ k.director_name }}
+                </h3>
+
+                {{ k.director_info|linebreaks }}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
 </section>
+
 {% endif %}
+
+
+<!-- =========================
+     TEACHERS
+========================= -->
 
 {% if teachers %}
+
 <section id="teachers">
-  <h2>Воспитатели и сотрудники</h2>
-  <div class="teachers">
-  {% for t in teachers %}
-    <article class="t">
-      {% if t.photo %}<img src="{{ t.photo.url }}" alt="{{ t.full_name }}" loading="lazy">{% else %}<div class="ph">{{ t.full_name|slice:":1" }}</div>{% endif %}
-      <div>
-        <h3>{{ t.full_name }}</h3>
-        <p class="role">{{ t.position }}{% if t.group %}, {{ t.group }}{% endif %}</p>
-        {% if t.experience %}<p>{{ t.experience }}</p>{% endif %}
-        {% if t.phone %}<p>{{ t.phone }}</p>{% endif %}
-        {% if t.schedule %}<div class="sch">{{ t.schedule|linebreaksbr }}</div>{% endif %}
-      </div>
-    </article>
-  {% endfor %}
-  </div>
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <span class="section-label">
+                Люди
+            </span>
+
+            <h2>
+                Воспитатели и сотрудники
+            </h2>
+
+            <p class="section-description">
+
+                Познакомьтесь с людьми, которые каждый день
+                заботятся о наших детях.
+
+            </p>
+
+        </div>
+
+
+        <div class="teachers">
+
+        {% for t in teachers %}
+
+            <article class="t">
+
+                <div class="t-image">
+
+                    {% if t.photo %}
+
+                    <img
+                        src="{{ t.photo.url }}"
+                        alt="{{ t.full_name }}"
+                        loading="lazy"
+                    >
+
+                    {% else %}
+
+                    <div class="ph">
+                        {{ t.full_name|slice:":1" }}
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="t-content">
+
+                    <h3>
+                        {{ t.full_name }}
+                    </h3>
+
+
+                    <p class="role">
+
+                        {{ t.position }}
+
+                        {% if t.group %}
+
+                            · {{ t.group }}
+
+                        {% endif %}
+
+                    </p>
+
+
+                    {% if t.experience %}
+
+                    <p class="experience">
+                        {{ t.experience }}
+                    </p>
+
+                    {% endif %}
+
+
+                    {% if t.phone %}
+
+                    <p class="phone">
+                        📞 {{ t.phone }}
+                    </p>
+
+                    {% endif %}
+
+
+                    {% if t.schedule %}
+
+                    <div class="sch">
+
+                        {{ t.schedule|linebreaksbr }}
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+        {% endfor %}
+
+        </div>
+
+    </div>
+
 </section>
+
 {% endif %}
 
+
+<!-- =========================
+     CONTACTS
+========================= -->
+
 <section id="contacts">
-  <h2>Контакты и режим работы</h2>
-  <div class="contacts">
-    {% if k.working_hours %}<div class="card"><small>График работы</small>{{ k.working_hours|linebreaksbr }}</div>{% endif %}
-    {% if k.address %}<div class="card"><small>Адрес</small>{{ k.address }}</div>{% endif %}
-    {% if k.phone or k.email %}<div class="card"><small>Связь</small>
-      {% if k.phone %}<a href="tel:{{ k.phone }}">{{ k.phone }}</a><br>{% endif %}
-      {% if k.email %}<a href="mailto:{{ k.email }}">{{ k.email }}</a>{% endif %}</div>{% endif %}
-  </div>
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <span class="section-label">
+                Связаться
+            </span>
+
+            <h2>
+                Контакты и режим работы
+            </h2>
+
+        </div>
+
+
+        <div class="contacts">
+
+
+            {% if k.working_hours %}
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    🕐
+                </div>
+
+                <small>
+                    График работы
+                </small>
+
+                <strong>
+                    {{ k.working_hours|linebreaksbr }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if k.address %}
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    📍
+                </div>
+
+                <small>
+                    Наш адрес
+                </small>
+
+                <strong>
+                    {{ k.address }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if k.phone or k.email %}
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    💬
+                </div>
+
+                <small>
+                    Связь с нами
+                </small>
+
+
+                {% if k.phone %}
+
+                <a href="tel:{{ k.phone }}">
+                    {{ k.phone }}
+                </a>
+
+                {% endif %}
+
+
+                {% if k.email %}
+
+                <br>
+
+                <a href="mailto:{{ k.email }}">
+                    {{ k.email }}
+                </a>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
 </section>
-</div>
-<footer><div class="wrap">© {% now "Y" %} {{ k.name }}</div></footer>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="wrap footer-inner">
+
+        <div>
+
+            © {% now "Y" %}
+
+            <span class="footer-name">
+                {{ k.name }}
+            </span>
+
+        </div>
+
+
+        <div>
+            Сделано с заботой о детях ❤️
+        </div>
+
+    </div>
+
+</footer>
+
 {% endif %}
+
 </body>
 </html>
+```
