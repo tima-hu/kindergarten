@@ -1,0 +1,13 @@
+[Unit]
+Description=Kindergarten site (gunicorn)
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/kindergarten
+ExecStart=/var/www/kindergarten/venv/bin/gunicorn config.wsgi:application --bind 127.0.0.1:8000 --workers 2
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

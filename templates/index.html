@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if k %}{{ k.name }}{% else %}Детский сад{% endif %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1e3a4c;--muted:#5b7382;--bg:#f2f8fb;--card:#fff;--sky:#5bb4e5;--sun:#ffc845;--leaf:#46b07a;--coral:#ff7b62}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Nunito,system-ui,sans-serif}
+h1,h2,h3{font-family:Fredoka,Nunito,sans-serif;font-weight:600;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{display:flex;gap:22px;flex-wrap:wrap;padding:18px 0;font-weight:700}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
+.hero{padding:36px 0 56px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.8rem);max-width:15ch}
+.slogan{font-size:1.25rem;color:var(--muted);margin:16px 0 0;max-width:46ch}
+.stats{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+.stat{padding:22px 26px;min-width:190px;color:var(--ink)}
+.stat b{display:block;font:600 3.2rem/1 Fredoka,sans-serif}
+.stat span{font-weight:700}
+.s1{background:var(--sun);border-radius:28px 28px 28px 6px}
+.s2{background:var(--leaf);color:#fff;border-radius:6px 28px 28px 28px}
+.s3{background:var(--sky);border-radius:28px 6px 28px 28px}
+.s4{background:var(--coral);color:#fff;border-radius:28px 28px 6px 28px}
+section{padding:48px 0}
+section h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:22px}
+.txt{max-width:70ch}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.card{background:var(--card);border-radius:20px;padding:24px;border-left:8px solid var(--sky)}
+.card.f{border-color:var(--sun)}.card.d{border-color:var(--coral)}
+.card small{display:block;color:var(--muted);font-weight:700}
+.card h3{font-size:1.45rem;margin:2px 0 8px}
+.card img{width:96px;height:96px;object-fit:cover;border-radius:50%;float:right;margin:0 0 8px 14px}
+.teachers{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.t{background:var(--card);border-radius:20px;overflow:hidden}
+.t img,.ph{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#dcecf5}
+.ph{display:grid;place-items:center;font:600 3rem Fredoka,sans-serif;color:var(--sky)}
+.t div{padding:16px 18px 20px}
+.t h3{font-size:1.2rem}.t p{margin:4px 0}.role{color:var(--muted);font-weight:700}
+.sch{font-size:.95rem;border-top:2px dashed #cfe0ea;margin-top:10px;padding-top:10px}
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.9rem}
+.empty{padding:80px 0;text-align:center}
+</style>
+</head>
+<body>
+{% if not k %}
+<div class="wrap empty"><h1>Сайт пока пуст</h1>
+<p>Зайдите в <a href="/admin/">админ-панель</a> и заполните раздел «Информация о садике».</p></div>
+{% else %}
+<div class="wrap">
+<nav>
+  <a href="#about">О садике</a><a href="#leaders">Руководство</a>
+  {% if teachers %}<a href="#teachers">Воспитатели</a>{% endif %}<a href="#contacts">Контакты</a>
+</nav>
+
+<header class="hero">
+  <h1>{{ k.name }}</h1>
+  {% if k.slogan %}<p class="slogan">{{ k.slogan }}</p>{% endif %}
+  <div class="stats">
+    <div class="stat s1"><b>{{ k.students_count }}</b><span>детей учатся сейчас</span></div>
+    <div class="stat s2"><b>{{ k.graduates_count }}</b><span>выпускников</span></div>
+    {% if k.groups_count %}<div class="stat s3"><b>{{ k.groups_count }}</b><span>групп</span></div>{% endif %}
+    {% if teachers %}<div class="stat s4"><b>{{ teachers|length }}</b><span>сотрудников в команде</span></div>{% endif %}
+  </div>
+</header>
+
+<section id="about">
+  <h2>О садике{% if k.founded_year %}: с {{ k.founded_year }} года{% endif %}</h2>
+  <div class="txt">{{ k.about|linebreaks }}{% if k.extra_info %}{{ k.extra_info|linebreaks }}{% endif %}
+  {% if k.license_info %}<p><b>Лицензия:</b> {{ k.license_info }}</p>{% endif %}</div>
+</section>
+
+{% if k.founder_name or k.director_name %}
+<section id="leaders">
+  <h2>Руководство</h2>
+  <div class="people">
+    {% if k.founder_name %}<div class="card f"><small>Учредитель</small><h3>{{ k.founder_name }}</h3>{{ k.founder_info|linebreaks }}</div>{% endif %}
+    {% if k.director_name %}<div class="card d">
+      {% if k.director_photo %}<img src="{{ k.director_photo.url }}" alt="{{ k.director_name }}">{% endif %}
+      <small>Директор</small><h3>{{ k.director_name }}</h3>{{ k.director_info|linebreaks }}</div>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if teachers %}
+<section id="teachers">
+  <h2>Воспитатели и сотрудники</h2>
+  <div class="teachers">
+  {% for t in teachers %}
+    <article class="t">
+      {% if t.photo %}<img src="{{ t.photo.url }}" alt="{{ t.full_name }}" loading="lazy">{% else %}<div class="ph">{{ t.full_name|slice:":1" }}</div>{% endif %}
+      <div>
+        <h3>{{ t.full_name }}</h3>
+        <p class="role">{{ t.position }}{% if t.group %}, {{ t.group }}{% endif %}</p>
+        {% if t.experience %}<p>{{ t.experience }}</p>{% endif %}
+        {% if t.phone %}<p>{{ t.phone }}</p>{% endif %}
+        {% if t.schedule %}<div class="sch">{{ t.schedule|linebreaksbr }}</div>{% endif %}
+      </div>
+    </article>
+  {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section id="contacts">
+  <h2>Контакты и режим работы</h2>
+  <div class="contacts">
+    {% if k.working_hours %}<div class="card"><small>График работы</small>{{ k.working_hours|linebreaksbr }}</div>{% endif %}
+    {% if k.address %}<div class="card"><small>Адрес</small>{{ k.address }}</div>{% endif %}
+    {% if k.phone or k.email %}<div class="card"><small>Связь</small>
+      {% if k.phone %}<a href="tel:{{ k.phone }}">{{ k.phone }}</a><br>{% endif %}
+      {% if k.email %}<a href="mailto:{{ k.email }}">{{ k.email }}</a>{% endif %}</div>{% endif %}
+  </div>
+</section>
+</div>
+<footer><div class="wrap">© {% now "Y" %} {{ k.name }}</div></footer>
+{% endif %}
+</body>
+</html>
