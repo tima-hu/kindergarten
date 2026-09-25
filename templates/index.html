@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,7 +8,6 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -87,9 +85,11 @@ h1,h2,h3{
     top:0;
     z-index:100;
     padding:16px 0;
-    background:rgba(247,249,252,.85);
+
+    background:rgba(247,249,252,.88);
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
+
     border-bottom:1px solid rgba(232,237,243,.7);
 }
 
@@ -104,7 +104,9 @@ h1,h2,h3{
     display:flex;
     align-items:center;
     gap:12px;
+
     text-decoration:none;
+
     font-family:"Manrope",sans-serif;
     font-weight:800;
     font-size:20px;
@@ -113,12 +115,17 @@ h1,h2,h3{
 .logo-icon{
     width:44px;
     height:44px;
+
     display:grid;
     place-items:center;
+
     border-radius:15px;
+
     background:linear-gradient(135deg,#6da0ff,#8c7cf5);
+
     color:white;
     font-size:21px;
+
     box-shadow:0 8px 20px rgba(91,141,239,.25);
 }
 
@@ -152,46 +159,121 @@ h1,h2,h3{
 ========================= */
 
 .hero{
-    padding:75px 0 60px;
+    position:relative;
+
+    min-height:700px;
+
+    display:flex;
+    align-items:center;
+
+    overflow:hidden;
+
+    border-radius:0 0 40px 40px;
+
+    background:#dfe9f4;
+}
+
+.hero-background{
+    position:absolute;
+    inset:0;
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    transform:scale(1.02);
+
+    z-index:0;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(12,22,32,.90) 0%,
+            rgba(12,22,32,.73) 42%,
+            rgba(12,22,32,.25) 100%
+        );
+
+    z-index:1;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    width:100%;
 }
 
 .hero-grid{
     display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:55px;
+    grid-template-columns:1fr 470px;
+
+    gap:60px;
+
     align-items:center;
+}
+
+.hero-text{
+    color:white;
 }
 
 .badge{
     display:inline-flex;
+
     align-items:center;
     gap:8px;
-    padding:8px 14px;
+
+    padding:9px 15px;
+
     border-radius:50px;
-    background:var(--blue-light);
-    color:var(--blue-dark);
+
+    background:rgba(255,255,255,.13);
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    color:white;
+
     font-weight:700;
     font-size:14px;
-    margin-bottom:22px;
+
+    margin-bottom:24px;
 }
 
 .badge-dot{
-    width:8px;
-    height:8px;
+    width:9px;
+    height:9px;
+
     border-radius:50%;
-    background:var(--green);
+
+    background:#64d49a;
 }
 
 .hero h1{
-    font-size:clamp(42px,6vw,76px);
-    letter-spacing:-2.5px;
-    max-width:800px;
+    color:white;
+
+    font-size:clamp(43px,6vw,78px);
+
+    letter-spacing:-2.8px;
+
+    line-height:1.03;
+
+    max-width:750px;
 }
 
 .slogan{
     margin:25px 0 30px;
-    max-width:600px;
-    color:var(--muted);
+
+    max-width:620px;
+
+    color:rgba(255,255,255,.85);
+
     font-size:19px;
 }
 
@@ -203,99 +285,125 @@ h1,h2,h3{
 
 .btn{
     display:inline-flex;
+
     align-items:center;
     justify-content:center;
+
     gap:8px;
+
     padding:14px 21px;
+
     border-radius:16px;
+
     text-decoration:none;
+
     font-weight:700;
+
     transition:.25s;
 }
 
 .btn-primary{
-    background:var(--text);
-    color:white;
-    box-shadow:0 10px 25px rgba(23,33,43,.15);
+    background:white;
+    color:var(--text);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.16);
 }
 
 .btn-primary:hover{
-    transform:translateY(-2px);
-    box-shadow:0 15px 30px rgba(23,33,43,.2);
+    transform:translateY(-3px);
+    box-shadow:0 17px 35px rgba(0,0,0,.22);
 }
 
 .btn-secondary{
-    background:white;
-    border:1px solid var(--border);
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.30);
+
+    color:white;
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
 }
 
 .btn-secondary:hover{
-    background:#f1f4f8;
+    background:rgba(255,255,255,.18);
+    transform:translateY(-3px);
 }
 
 
 /* =========================
-   HERO CARD
+   HERO PHOTO
 ========================= */
 
-.hero-card{
+.hero-photo{
     position:relative;
-    min-height:420px;
-    border-radius:40px;
+
+    width:100%;
+    height:470px;
+
     overflow:hidden;
 
-    background:
-        radial-gradient(circle at 20% 20%,#dce8ff,transparent 30%),
-        radial-gradient(circle at 80% 80%,#ffe3eb,transparent 35%),
-        #edf3ff;
+    border-radius:35px;
 
-    box-shadow:var(--shadow);
+    border:7px solid rgba(255,255,255,.78);
+
+    background:#edf3f8;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.28),
+        0 0 0 1px rgba(255,255,255,.15);
 }
 
-.hero-shape{
-    position:absolute;
-    border-radius:50%;
-    opacity:.7;
+.hero-photo img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    display:block;
+
+    transition:transform .5s ease;
 }
 
-.shape-1{
-    width:160px;
-    height:160px;
-    background:var(--yellow);
-    top:-50px;
-    right:-30px;
+.hero-photo:hover img{
+    transform:scale(1.04);
 }
 
-.shape-2{
-    width:120px;
-    height:120px;
-    background:var(--green);
-    bottom:-30px;
-    left:-25px;
-}
+.hero-photo-placeholder{
+    width:100%;
+    height:100%;
 
-.hero-emoji{
-    position:absolute;
-    inset:0;
     display:grid;
     place-items:center;
-    font-size:150px;
-    filter:drop-shadow(0 20px 20px rgba(0,0,0,.08));
+
+    font-size:120px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf1ff,
+            #fff0f3
+        );
 }
 
-.hero-label{
+.hero-photo-label{
     position:absolute;
-    bottom:25px;
-    left:25px;
-    right:25px;
-    padding:16px 20px;
-    border-radius:20px;
 
-    background:rgba(255,255,255,.8);
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
+    left:20px;
+    right:20px;
+    bottom:20px;
+
+    padding:15px 18px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.86);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
 
     font-weight:700;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.10);
 }
 
 
@@ -304,32 +412,48 @@ h1,h2,h3{
 ========================= */
 
 .stats{
+    position:relative;
+    z-index:5;
+
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     gap:16px;
-    margin-top:35px;
+
+    margin-top:-45px;
 }
 
 .stat{
-    padding:24px;
-    border-radius:22px;
+    padding:25px;
+
+    border-radius:24px;
+
     background:white;
+
     border:1px solid var(--border);
+
+    box-shadow:0 15px 40px rgba(37,55,75,.09);
+
     transition:.25s;
 }
 
 .stat:hover{
-    transform:translateY(-4px);
-    box-shadow:var(--shadow);
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-hover);
 }
 
 .stat-icon{
-    width:42px;
-    height:42px;
+    width:44px;
+    height:44px;
+
     display:grid;
     place-items:center;
-    border-radius:13px;
-    margin-bottom:16px;
+
+    border-radius:14px;
+
+    margin-bottom:15px;
+
     font-size:20px;
 }
 
@@ -351,15 +475,21 @@ h1,h2,h3{
 
 .stat b{
     display:block;
-    font-family:"Manrope";
+
+    font-family:"Manrope",sans-serif;
+
     font-size:32px;
+
     line-height:1;
+
     margin-bottom:7px;
 }
 
 .stat span{
     color:var(--muted);
+
     font-size:14px;
+
     font-weight:600;
 }
 
@@ -369,32 +499,43 @@ h1,h2,h3{
 ========================= */
 
 section{
-    padding:85px 0;
+    padding:90px 0;
 }
 
 .section-head{
-    margin-bottom:35px;
+    margin-bottom:38px;
 }
 
 .section-label{
     display:inline-block;
+
     margin-bottom:10px;
+
     color:var(--blue);
+
     font-weight:800;
-    font-size:14px;
+
+    font-size:13px;
+
     text-transform:uppercase;
-    letter-spacing:1px;
+
+    letter-spacing:1.2px;
 }
 
 section h2{
-    font-size:clamp(30px,4vw,46px);
-    letter-spacing:-1.5px;
+    font-size:clamp(30px,4vw,48px);
+
+    letter-spacing:-1.7px;
 }
 
 .section-description{
-    margin-top:12px;
+    margin-top:14px;
+
     color:var(--muted);
+
     max-width:650px;
+
+    font-size:17px;
 }
 
 
@@ -404,16 +545,22 @@ section h2{
 
 .about-box{
     display:grid;
-    grid-template-columns:1fr .7fr;
-    gap:25px;
+
+    grid-template-columns:1fr .72fr;
+
+    gap:24px;
 }
 
 .about-main,
 .about-side{
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:var(--radius);
-    padding:32px;
+
+    padding:34px;
+
     box-shadow:0 8px 30px rgba(37,55,75,.04);
 }
 
@@ -422,11 +569,17 @@ section h2{
 }
 
 .about-side{
-    background:linear-gradient(145deg,#eef4ff,#f8fbff);
+    background:
+        linear-gradient(
+            145deg,
+            #eef4ff,
+            #fbfcff
+        );
 }
 
 .info-row{
     padding:18px 0;
+
     border-bottom:1px solid var(--border);
 }
 
@@ -436,8 +589,11 @@ section h2{
 
 .info-row small{
     display:block;
+
     color:var(--muted);
+
     font-weight:700;
+
     margin-bottom:4px;
 }
 
@@ -448,17 +604,25 @@ section h2{
 
 .people{
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:22px;
 }
 
 .card{
     position:relative;
+
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:var(--radius);
-    padding:28px;
+
+    padding:30px;
+
     overflow:hidden;
+
     transition:.25s;
 }
 
@@ -469,19 +633,20 @@ section h2{
 
 .card::after{
     content:"";
-    position:absolute;
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    background:var(--blue-light);
-    right:-60px;
-    top:-60px;
-    z-index:0;
-}
 
-.card > *{
-    position:relative;
-    z-index:1;
+    position:absolute;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:var(--blue-light);
+
+    right:-70px;
+    top:-70px;
+
+    z-index:0;
 }
 
 .card.f::after{
@@ -492,28 +657,44 @@ section h2{
     background:var(--pink-light);
 }
 
+.card > *{
+    position:relative;
+    z-index:1;
+}
+
 .card small{
     display:block;
+
     color:var(--muted);
+
     font-size:13px;
+
     font-weight:800;
+
     text-transform:uppercase;
-    letter-spacing:.7px;
+
+    letter-spacing:.8px;
 }
 
 .card h3{
     font-size:24px;
-    margin:5px 0 12px;
+
+    margin:5px 0 13px;
 }
 
 .card img{
-    width:90px;
-    height:90px;
+    width:92px;
+    height:92px;
+
     object-fit:cover;
-    border-radius:24px;
+
+    border-radius:25px;
+
     float:right;
-    margin-left:15px;
-    box-shadow:0 8px 20px rgba(0,0,0,.1);
+
+    margin-left:16px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
 
@@ -523,34 +704,46 @@ section h2{
 
 .teachers{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:22px;
 }
 
 .t{
     background:white;
+
     border:1px solid var(--border);
-    border-radius:24px;
+
+    border-radius:26px;
+
     overflow:hidden;
+
     transition:.3s;
 }
 
 .t:hover{
-    transform:translateY(-6px);
+    transform:translateY(-7px);
+
     box-shadow:var(--shadow-hover);
 }
 
 .t-image{
     position:relative;
+
     overflow:hidden;
+
     background:#edf3f8;
 }
 
 .t img,
 .ph{
     width:100%;
+
     aspect-ratio:4/3;
+
     object-fit:cover;
+
     display:block;
 }
 
@@ -565,29 +758,42 @@ section h2{
 .ph{
     display:grid;
     place-items:center;
-    font-family:"Manrope";
-    font-size:60px;
+
+    font-family:"Manrope",sans-serif;
+
+    font-size:62px;
+
     color:var(--blue);
-    background:linear-gradient(135deg,#eaf1ff,#f8faff);
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf1ff,
+            #f8faff
+        );
 }
 
 .t-content{
-    padding:22px;
+    padding:23px;
 }
 
 .t h3{
     font-size:20px;
+
     margin-bottom:5px;
 }
 
 .role{
     color:var(--blue);
+
     font-weight:700;
+
     font-size:14px;
 }
 
 .experience{
     color:var(--muted);
+
     margin:10px 0;
 }
 
@@ -596,10 +802,14 @@ section h2{
 }
 
 .sch{
-    margin-top:14px;
-    padding-top:14px;
+    margin-top:15px;
+
+    padding-top:15px;
+
     border-top:1px dashed var(--border);
+
     color:var(--muted);
+
     font-size:14px;
 }
 
@@ -610,24 +820,41 @@ section h2{
 
 .contacts{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:20px;
 }
 
 .contact-card{
-    padding:28px;
-    border-radius:24px;
+    padding:29px;
+
+    border-radius:25px;
+
     background:white;
+
     border:1px solid var(--border);
+
+    transition:.25s;
+}
+
+.contact-card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow);
 }
 
 .contact-icon{
-    width:50px;
-    height:50px;
+    width:52px;
+    height:52px;
+
     display:grid;
     place-items:center;
-    border-radius:16px;
+
+    border-radius:17px;
+
     font-size:23px;
+
     margin-bottom:18px;
 }
 
@@ -645,13 +872,17 @@ section h2{
 
 .contact-card small{
     display:block;
+
     color:var(--muted);
+
     font-weight:700;
+
     margin-bottom:6px;
 }
 
 .contact-card a{
     text-decoration:none;
+
     font-weight:700;
 }
 
@@ -665,47 +896,65 @@ section h2{
 ========================= */
 
 footer{
-    margin-top:30px;
-    padding:35px 0;
+    margin-top:20px;
+
+    padding:38px 0;
+
     border-top:1px solid var(--border);
+
     color:var(--muted);
 }
 
 .footer-inner{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:20px;
 }
 
 .footer-name{
     color:var(--text);
+
     font-weight:800;
 }
 
 
 /* =========================
-   EMPTY
+   EMPTY PAGE
 ========================= */
 
 .empty{
     min-height:100vh;
+
     display:grid;
+
     place-items:center;
+
     text-align:center;
+
+    padding:20px;
 }
 
 .empty-box{
     max-width:550px;
+
     padding:50px;
+
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:32px;
+
     box-shadow:var(--shadow);
 }
 
 .empty-icon{
     font-size:60px;
+
     margin-bottom:20px;
 }
 
@@ -715,19 +964,26 @@ footer{
 
 .empty p{
     color:var(--muted);
+
     margin-bottom:25px;
+}
+
+.empty .btn{
+    background:var(--text);
+
+    color:white;
 }
 
 
 /* =========================
-   ANIMATIONS
+   ANIMATION
 ========================= */
 
 @keyframes fadeUp{
 
     from{
         opacity:0;
-        transform:translateY(18px);
+        transform:translateY(22px);
     }
 
     to{
@@ -737,31 +993,29 @@ footer{
 
 }
 
-.hero-content{
+.hero-text{
     animation:fadeUp .7s ease both;
 }
 
-.hero-card{
+.hero-photo{
     animation:fadeUp .8s .1s ease both;
 }
 
 
 /* =========================
-   MOBILE
+   TABLET
 ========================= */
 
-@media(max-width:900px){
-
-    .nav-links{
-        gap:15px;
-    }
+@media(max-width:1000px){
 
     .hero-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 390px;
+
+        gap:35px;
     }
 
-    .hero-card{
-        min-height:330px;
+    .hero-photo{
+        height:400px;
     }
 
     .stats{
@@ -776,14 +1030,14 @@ footer{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .contacts{
-        grid-template-columns:1fr;
-    }
-
 }
 
 
-@media(max-width:650px){
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
 
     .wrap{
         width:min(100% - 28px,1180px);
@@ -794,7 +1048,7 @@ footer{
     }
 
     .nav-inner{
-        align-items:flex-start;
+        justify-content:center;
     }
 
     .nav-links{
@@ -802,66 +1056,36 @@ footer{
     }
 
     .hero{
-        padding:45px 0 35px;
+        min-height:auto;
+
+        padding:55px 0 45px;
+
+        border-radius:0 0 30px 30px;
+    }
+
+    .hero-overlay{
+        background:
+            linear-gradient(
+                180deg,
+                rgba(12,22,32,.77),
+                rgba(12,22,32,.92)
+            );
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+
+        gap:35px;
     }
 
     .hero h1{
         font-size:43px;
-        letter-spacing:-1.5px;
+
+        letter-spacing:-1.6px;
     }
 
     .slogan{
         font-size:17px;
-    }
-
-    .hero-card{
-        min-height:270px;
-        border-radius:30px;
-    }
-
-    .hero-emoji{
-        font-size:100px;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-    }
-
-    .stat{
-        padding:18px;
-    }
-
-    .stat b{
-        font-size:27px;
-    }
-
-    section{
-        padding:60px 0;
-    }
-
-    .people,
-    .teachers{
-        grid-template-columns:1fr;
-    }
-
-    .about-main,
-    .about-side,
-    .card{
-        padding:22px;
-    }
-
-    .footer-inner{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .empty-box{
-        padding:35px 22px;
-    }
-
-    .empty h1{
-        font-size:32px;
     }
 
     .hero-buttons{
@@ -872,12 +1096,93 @@ footer{
         width:100%;
     }
 
+    .hero-photo{
+        height:300px;
+
+        border-radius:26px;
+
+        border-width:5px;
+    }
+
+    .hero-photo-placeholder{
+        font-size:90px;
+    }
+
+    .stats{
+        margin-top:18px;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:10px;
+    }
+
+    .stat{
+        padding:19px;
+    }
+
+    .stat b{
+        font-size:27px;
+    }
+
+    section{
+        padding:65px 0;
+    }
+
+    .people,
+    .teachers,
+    .contacts{
+        grid-template-columns:1fr;
+    }
+
+    .about-main,
+    .about-side,
+    .card{
+        padding:23px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media(max-width:420px){
+
+    .hero h1{
+        font-size:37px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .hero-photo{
+        height:260px;
+    }
+
+    .section-head{
+        margin-bottom:27px;
+    }
+
+    section h2{
+        font-size:31px;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 {% if not k %}
 
@@ -898,7 +1203,7 @@ footer{
             «Информация о садике».
         </p>
 
-        <a class="btn btn-primary" href="/admin/">
+        <a href="/admin/" class="btn">
             Открыть админ-панель
         </a>
 
@@ -906,11 +1211,12 @@ footer{
 
 </div>
 
+
 {% else %}
 
 
 <!-- =========================
-     NAVIGATION
+     NAVBAR
 ========================= -->
 
 <nav class="navbar">
@@ -935,6 +1241,7 @@ footer{
             <a href="#about">
                 О садике
             </a>
+
 
             {% if k.founder_name or k.director_name %}
 
@@ -965,17 +1272,37 @@ footer{
 </nav>
 
 
+
 <!-- =========================
      HERO
 ========================= -->
 
 <header class="hero">
 
-    <div class="wrap">
+
+    {% if k.background_photo %}
+
+    <div
+        class="hero-background"
+        style="background-image:url('{{ k.background_photo.url }}');">
+    </div>
+
+    {% else %}
+
+    <div class="hero-background"></div>
+
+    {% endif %}
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="wrap hero-content">
 
         <div class="hero-grid">
 
-            <div class="hero-content">
+
+            <div class="hero-text">
 
                 <div class="badge">
 
@@ -1006,8 +1333,9 @@ footer{
                         Узнать больше →
                     </a>
 
+
                     <a href="#contacts" class="btn btn-secondary">
-                        Контакты
+                        Связаться с нами
                     </a>
 
                 </div>
@@ -1015,114 +1343,129 @@ footer{
             </div>
 
 
-            <div class="hero-card">
 
-                <div class="hero-shape shape-1"></div>
+            <!-- ГЛАВНОЕ ФОТО -->
 
-                <div class="hero-shape shape-2"></div>
+            <div class="hero-photo">
 
-                <div class="hero-emoji">
-                    🧸
-                </div>
+                {% if k.hero_photo %}
 
-                <div class="hero-label">
+                    <img
+                        src="{{ k.hero_photo.url }}"
+                        alt="{{ k.name }}">
 
-                    🌈 Место, где детям интересно
-                    расти, учиться и мечтать
+                    <div class="hero-photo-label">
+                        🌈 Место, где детям интересно
+                        расти, учиться и мечтать
+                    </div>
 
-                </div>
+                {% else %}
 
-            </div>
+                    <div class="hero-photo-placeholder">
+                        🧸
+                    </div>
 
-        </div>
-
-
-        <!-- =========================
-             STATS
-        ========================= -->
-
-        <div class="stats">
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    👧
-                </div>
-
-                <b>
-                    {{ k.students_count }}
-                </b>
-
-                <span>
-                    детей сейчас
-                </span>
+                {% endif %}
 
             </div>
 
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    🎓
-                </div>
-
-                <b>
-                    {{ k.graduates_count }}
-                </b>
-
-                <span>
-                    выпускников
-                </span>
-
-            </div>
-
-
-            {% if k.groups_count %}
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    🏠
-                </div>
-
-                <b>
-                    {{ k.groups_count }}
-                </b>
-
-                <span>
-                    групп
-                </span>
-
-            </div>
-
-            {% endif %}
-
-
-            {% if teachers %}
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    👩‍🏫
-                </div>
-
-                <b>
-                    {{ teachers|length }}
-                </b>
-
-                <span>
-                    сотрудников
-                </span>
-
-            </div>
-
-            {% endif %}
 
         </div>
 
     </div>
 
 </header>
+
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="wrap">
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                👧
+            </div>
+
+            <b>
+                {{ k.students_count }}
+            </b>
+
+            <span>
+                детей сейчас
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🎓
+            </div>
+
+            <b>
+                {{ k.graduates_count }}
+            </b>
+
+            <span>
+                выпускников
+            </span>
+
+        </div>
+
+
+        {% if k.groups_count %}
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🏠
+            </div>
+
+            <b>
+                {{ k.groups_count }}
+            </b>
+
+            <span>
+                групп
+            </span>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if teachers %}
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                👩‍🏫
+            </div>
+
+            <b>
+                {{ teachers|length }}
+            </b>
+
+            <span>
+                сотрудников
+            </span>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
 
 
 <!-- =========================
@@ -1133,11 +1476,13 @@ footer{
 
     <div class="wrap">
 
+
         <div class="section-head">
 
             <span class="section-label">
                 О нас
             </span>
+
 
             <h2>
 
@@ -1163,7 +1508,9 @@ footer{
         </div>
 
 
+
         <div class="about-box">
+
 
             <div class="about-main">
 
@@ -1172,14 +1519,26 @@ footer{
 
                 {% if k.extra_info %}
 
-                {{ k.extra_info|linebreaks }}
+                    {{ k.extra_info|linebreaks }}
+
+                {% endif %}
+
+
+                {% if k.license_info %}
+
+                    <p>
+                        <strong>Лицензия:</strong>
+                        {{ k.license_info }}
+                    </p>
 
                 {% endif %}
 
             </div>
 
 
+
             <div class="about-side">
+
 
                 {% if k.founded_year %}
 
@@ -1196,6 +1555,7 @@ footer{
                 </div>
 
                 {% endif %}
+
 
 
                 {% if k.license_info %}
@@ -1215,12 +1575,13 @@ footer{
                 {% endif %}
 
 
+
                 {% if k.groups_count %}
 
                 <div class="info-row">
 
                     <small>
-                        Группы
+                        Количество групп
                     </small>
 
                     <strong>
@@ -1240,6 +1601,7 @@ footer{
 </section>
 
 
+
 <!-- =========================
      LEADERS
 ========================= -->
@@ -1249,6 +1611,7 @@ footer{
 <section id="leaders">
 
     <div class="wrap">
+
 
         <div class="section-head">
 
@@ -1263,7 +1626,9 @@ footer{
         </div>
 
 
+
         <div class="people">
+
 
             {% if k.founder_name %}
 
@@ -1284,16 +1649,17 @@ footer{
             {% endif %}
 
 
+
             {% if k.director_name %}
 
             <div class="card d">
+
 
                 {% if k.director_photo %}
 
                 <img
                     src="{{ k.director_photo.url }}"
-                    alt="{{ k.director_name }}"
-                >
+                    alt="{{ k.director_name }}">
 
                 {% endif %}
 
@@ -1312,6 +1678,7 @@ footer{
 
             {% endif %}
 
+
         </div>
 
     </div>
@@ -1319,6 +1686,7 @@ footer{
 </section>
 
 {% endif %}
+
 
 
 <!-- =========================
@@ -1331,15 +1699,18 @@ footer{
 
     <div class="wrap">
 
+
         <div class="section-head">
 
             <span class="section-label">
                 Люди
             </span>
 
+
             <h2>
                 Воспитатели и сотрудники
             </h2>
+
 
             <p class="section-description">
 
@@ -1351,21 +1722,25 @@ footer{
         </div>
 
 
+
         <div class="teachers">
+
 
         {% for t in teachers %}
 
+
             <article class="t">
 
+
                 <div class="t-image">
+
 
                     {% if t.photo %}
 
                     <img
                         src="{{ t.photo.url }}"
                         alt="{{ t.full_name }}"
-                        loading="lazy"
-                    >
+                        loading="lazy">
 
                     {% else %}
 
@@ -1375,10 +1750,13 @@ footer{
 
                     {% endif %}
 
+
                 </div>
 
 
+
                 <div class="t-content">
+
 
                     <h3>
                         {{ t.full_name }}
@@ -1390,9 +1768,7 @@ footer{
                         {{ t.position }}
 
                         {% if t.group %}
-
                             · {{ t.group }}
-
                         {% endif %}
 
                     </p>
@@ -1426,11 +1802,15 @@ footer{
 
                     {% endif %}
 
+
                 </div>
+
 
             </article>
 
+
         {% endfor %}
+
 
         </div>
 
@@ -1441,6 +1821,7 @@ footer{
 {% endif %}
 
 
+
 <!-- =========================
      CONTACTS
 ========================= -->
@@ -1449,17 +1830,20 @@ footer{
 
     <div class="wrap">
 
+
         <div class="section-head">
 
             <span class="section-label">
                 Связаться
             </span>
 
+
             <h2>
                 Контакты и режим работы
             </h2>
 
         </div>
+
 
 
         <div class="contacts">
@@ -1486,6 +1870,7 @@ footer{
             {% endif %}
 
 
+
             {% if k.address %}
 
             <div class="contact-card">
@@ -1505,6 +1890,7 @@ footer{
             </div>
 
             {% endif %}
+
 
 
             {% if k.phone or k.email %}
@@ -1543,11 +1929,13 @@ footer{
 
             {% endif %}
 
+
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =========================
@@ -1557,6 +1945,7 @@ footer{
 <footer>
 
     <div class="wrap footer-inner">
+
 
         <div>
 
@@ -1573,12 +1962,14 @@ footer{
             Сделано с заботой о детях ❤️
         </div>
 
+
     </div>
 
 </footer>
 
+
 {% endif %}
+
 
 </body>
 </html>
-```

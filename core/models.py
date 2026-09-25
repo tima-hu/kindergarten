@@ -4,6 +4,18 @@ from django.db import models
 class Kindergarten(models.Model):
     name = models.CharField("Название садика", max_length=200)
     slogan = models.CharField("Слоган", max_length=250, blank=True)
+    hero_photo = models.ImageField(
+    "Главное фото",
+    upload_to="kindergarten/hero/",
+    blank=True,
+    null=True
+    )
+    background_photo = models.ImageField(
+    "Фоновое фото",
+    upload_to="kindergarten/background/",
+    blank=True,
+    null=True
+    )
     about = models.TextField("О садике", blank=True)
     founded_year = models.PositiveIntegerField("Год основания", null=True, blank=True)
     students_count = models.PositiveIntegerField("Сейчас обучаются (детей)", default=0)
